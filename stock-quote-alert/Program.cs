@@ -10,8 +10,10 @@ var builder = new ConfigurationBuilder()
 IConfiguration config = builder.Build();
 
 var emailSettings = config.GetSection("email").Get<EmailSettings>();
+var smtpSettings = config.GetSection("smtp").Get<SmtpSettings>();
 
-var emailSenderService = new EmailSenderService(emailSettings);
+
+var emailSenderService = new EmailSenderService(emailSettings, smtpSettings);
 emailSenderService.SendEmail(new EmailDto()
 {
     Subject = "Stock alert!",

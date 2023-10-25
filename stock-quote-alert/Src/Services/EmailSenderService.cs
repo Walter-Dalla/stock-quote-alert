@@ -12,29 +12,31 @@ namespace stock_quote_alert.Src.Services
 {
     public class EmailSenderService
     {
-        private readonly EmailSettings Settings;
-        public EmailSenderService(EmailSettings emailSettings)
+        private readonly EmailSettings EmailSettings;
+        private readonly SmtpSettings SmtpSettings;
+        public EmailSenderService(EmailSettings emailSettings, SmtpSettings smtpSettings)
         {
-            Settings = emailSettings;
+            EmailSettings = emailSettings;
+            SmtpSettings = smtpSettings;
         }
 
         public void SendEmail(EmailDto emailData)
         {
             var mailMessage = new MailMessage
             {
-                From = new MailAddress(Settings.EmailAddressSender),
+                From = new MailAddress(EmailSettings.EmailAddressSender),
                 Subject = emailData.Subject,
                 Body = emailData.Body,
                 IsBodyHtml = true,
             };
-            mailMessage.To.Add(Settings.EmailAddressRecipient);
+            mailMessage.To.Add(EmailSettings.EmailAddressRecipient);
 
 
-            var smtpClient = new SmtpClient("smtp.gmail.com")
+            var smtpClient = new SmtpClient(SmtpSettings.Server)
             {
-                Port = 587,
-                Credentials = new NetworkCredential(Settings.EmailAddressSender, Settings.Password),
-                EnableSsl = true,
+                Port = SmtpSettings.Port,
+                Credentials = new NetworkCredential(EmailSettings.EmailAddressSender, EmailSettings.Password),
+                EnableSsl = SmtpSettings.EnableSsl,
             };
 
             smtpClient.Send(mailMessage);
