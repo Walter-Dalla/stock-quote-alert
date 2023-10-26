@@ -1,14 +1,6 @@
-﻿using stock_quote_alert.Src.Configs;
-using stock_quote_alert.Src.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+﻿using stock_quote_alert.Src.Dto;
 
-namespace stock_quote_alert.Src.Services
+namespace stock_quote_alert.Src.Services.Interface
 {
     public interface IEmailSenderService
     {

@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using stock_quote_alert.Src.Configs;
-using stock_quote_alert.Src.Dto;
 using stock_quote_alert.Src.Helpers;
-using stock_quote_alert.Src.Services;
-using stock_quote_alert.Src.Services.Implementation;
+using stock_quote_alert.Src.Services.Interface;
 
 namespace stock_quote_alert.Src.Workers
 {
@@ -40,7 +37,7 @@ namespace stock_quote_alert.Src.Workers
                 {
                     sendEmail = true;
                 }
-                else if(randomStockQuoteValue >= maxThreshold)
+                else if (randomStockQuoteValue >= maxThreshold)
                 {
                     sendEmail = true;
                 }
