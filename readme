@@ -34,7 +34,7 @@ Quando você chama o programa, forneça os seguintes parâmetros via linha de coman
 
 Exemplo:
 
-   ```json
+   ```shell
    .\stock-quote-alert.exe PETR4 10 20.33
    ```
     
@@ -48,7 +48,7 @@ Compile o projeto utilizando o ambiente de desenvolvimento de sua escolha (Visua
 
 Execute o programa via linha de comando, fornecendo os parâmetros necessários. Por exemplo:
 
-   ```json
+   ```shell
    .\stock-quote-alert.exe PETR4 10 20.33
    ```
    
@@ -56,3 +56,19 @@ Execute o programa via linha de comando, fornecendo os parâmetros necessários. P
 
 O programa ficará em execução, monitorando a cotação do ativo enquanto estiver rodando.
 
+
+## Observações
+
+No código, existem dois tipos de comentários:
+
+Comentários com //: Esses são comentários que geralmente são deixados no código para outros desenvolvedores:
+
+// comentario aqui...
+
+
+Comentários com //#: Estes são comentários nos quais justifico alguma escolha técnica para que o leitor compreenda a decisão. Normalmente, esses comentários não seriam incluídos em um código comum:
+
+//# comentario aqui...
+
+
+Essa prática ajuda a distinguir os comentários comuns dos meta-comentários que explicam escolhas mais técnicas para fins didaticos.
