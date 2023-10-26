@@ -8,9 +8,9 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace stock_quote_alert.Src.Services
+namespace stock_quote_alert.Src.Services.Implementation
 {
-    public class EmailSenderService
+    public class EmailSenderService : IEmailSenderService
     {
         private readonly EmailSettings EmailSettings;
         private readonly SmtpSettings SmtpSettings;

@@ -1,7 +1,9 @@
 ﻿using stock_quote_alert.Src.Dto;
 
-namespace stock_quote_alert.Src.Services
+namespace stock_quote_alert.Src.Helpers
 {
+    //# Como essa classe existe somente para liberar um Util ou Helper estatico ela não precisa ser salva no escopo "builder.Services"
+    //# E não se caracteriza como um service e sim um utilitario por isso está separado na pasta de Helpers
     public class EmailFormatter
     {
 
