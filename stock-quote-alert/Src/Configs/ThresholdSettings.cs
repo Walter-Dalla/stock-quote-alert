@@ -10,5 +10,6 @@ namespace stock_quote_alert.Configs
     {
         public decimal MinThreshold { get; set; } = 0m;
         public decimal MaxThreshold { get; set; } = 0m;
+        public string StockQuote { get; set; } = "";
     }
 }

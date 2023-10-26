@@ -14,8 +14,15 @@ builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
 
 try
 {
-    _ = decimal.TryParse(Environment.GetCommandLineArgs()[1], out var maxThreshold);
-    _ = decimal.TryParse(Environment.GetCommandLineArgs()[2], out var minThreshold);
+    var stockQuote = Environment.GetCommandLineArgs()[1];
+    _ = decimal.TryParse(Environment.GetCommandLineArgs()[2], out var maxThreshold);
+    _ = decimal.TryParse(Environment.GetCommandLineArgs()[3], out var minThreshold);
+
+
+    if (string.IsNullOrWhiteSpace(stockQuote))
+    {
+        throw new Exception("O valor de referencia para o nome do ativo não foi informado");
+    }
 
     if (maxThreshold <= 0 || minThreshold <= 0)
     {
@@ -26,7 +33,8 @@ try
     builder.Services.AddSingleton(new ThresholdSettings
     {
         MaxThreshold = maxThreshold,
-        MinThreshold = minThreshold
+        MinThreshold = minThreshold,
+        StockQuote = stockQuote
     });
 }
 catch

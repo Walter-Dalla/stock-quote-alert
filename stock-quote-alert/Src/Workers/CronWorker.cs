@@ -28,7 +28,7 @@ namespace stock_quote_alert.Workers
             var minThreshold = _thresholdSettings.MinThreshold;
             var maxThreshold = _thresholdSettings.MaxThreshold;
 
-            var stockName = "PETR4";
+            var stockName = _thresholdSettings.StockQuote;
 
             while (!stoppingToken.IsCancellationRequested)
             {
