@@ -12,6 +12,30 @@ HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
                           .AddJsonFile("AppSettings.json", optional: false);
 
+try
+{
+    _ = decimal.TryParse(Environment.GetCommandLineArgs()[1], out var maxThreshold);
+    _ = decimal.TryParse(Environment.GetCommandLineArgs()[2], out var minThreshold);
+
+    if (maxThreshold <= 0 || minThreshold <= 0)
+    {
+        throw new Exception("Os valores de referencia para a venda ou compra são invalidos (menor ou igual que zero)");
+    }
+
+    //# Adicionado como singleton para poder injetar em qualquer dependencia futura do sistema
+    builder.Services.AddSingleton(new ThresholdSettings
+    {
+        MaxThreshold = maxThreshold,
+        MinThreshold = minThreshold
+    });
+}
+catch
+{
+    Console.WriteLine("Houve um erro ao ler os dados passados no parametro de execução do EXE");
+    throw;
+}
+
+
 //# Adicionado como singleton para poder injetar em qualquer dependencia futura do sistema
 builder.Services.AddSingleton(builder.Configuration.GetSection("email").Get<EmailSettings>() ?? new EmailSettings());
 builder.Services.AddSingleton(builder.Configuration.GetSection("smtp").Get<SmtpSettings>() ?? new SmtpSettings());
@@ -23,5 +47,8 @@ builder.Services.AddHostedService<CronWorker>();
 builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
 
 IHost host = builder.Build();
+
+
+
 
 host.Run();

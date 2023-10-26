@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using stock_quote_alert.Configs;
 using stock_quote_alert.Helpers;
 using stock_quote_alert.Services.Interface;
 
@@ -14,16 +15,18 @@ namespace stock_quote_alert.Workers
     {
         private readonly ILogger<CronWorker> _logger;
         private readonly IEmailSenderService _emailSenderService;
-        public CronWorker(ILogger<CronWorker> logger, IEmailSenderService emailSenderService)
+        private readonly ThresholdSettings _thresholdSettings;
+        public CronWorker(ILogger<CronWorker> logger, IEmailSenderService emailSenderService, ThresholdSettings thresholdSettings)
         {
             _logger = logger;
             _emailSenderService = emailSenderService;
+            _thresholdSettings = thresholdSettings;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var minThreshold = 10m;
-            var maxThreshold = 90m;
+            var minThreshold = _thresholdSettings.MinThreshold;
+            var maxThreshold = _thresholdSettings.MaxThreshold;
 
             var stockName = "PETR4";
 
