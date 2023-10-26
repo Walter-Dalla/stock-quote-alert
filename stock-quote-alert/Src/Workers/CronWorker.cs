@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using stock_quote_alert.Src.Helpers;
-using stock_quote_alert.Src.Services.Interface;
+using stock_quote_alert.Helpers;
+using stock_quote_alert.Services.Interface;
 
-namespace stock_quote_alert.Src.Workers
+namespace stock_quote_alert.Workers
 {
 
     //# Decidi utilizar o BackgroundService pois esse worker vai rodar em background em uma thread sepada do sistema,
@@ -12,11 +12,11 @@ namespace stock_quote_alert.Src.Workers
 
     internal class CronWorker : BackgroundService
     {
-        private readonly ILogger<CronWorker> Logger;
+        private readonly ILogger<CronWorker> _logger;
         private readonly IEmailSenderService _emailSenderService;
         public CronWorker(ILogger<CronWorker> logger, IEmailSenderService emailSenderService)
         {
-            Logger = logger;
+            _logger = logger;
             _emailSenderService = emailSenderService;
         }
 
@@ -42,7 +42,7 @@ namespace stock_quote_alert.Src.Workers
                     sendEmail = true;
                 }
 
-                Logger.LogDebug("randomStockQuoteValue: " + randomStockQuoteValue);
+                _logger.LogDebug("randomStockQuoteValue: " + randomStockQuoteValue);
                 Console.WriteLine("randomStockQuoteValue: " + randomStockQuoteValue);
                 if (sendEmail)
                 {

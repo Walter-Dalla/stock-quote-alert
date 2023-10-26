@@ -1,4 +1,4 @@
-﻿namespace stock_quote_alert.Src.Configs
+﻿namespace stock_quote_alert.Configs
 {
     public class EmailSettings
     {

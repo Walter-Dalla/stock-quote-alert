@@ -1,6 +1,6 @@
-﻿using stock_quote_alert.Src.Dto;
+﻿using stock_quote_alert.Dto;
 
-namespace stock_quote_alert.Src.Services.Interface
+namespace stock_quote_alert.Services.Interface
 {
     public interface IEmailSenderService
     {

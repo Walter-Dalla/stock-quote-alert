@@ -1,4 +1,4 @@
-﻿namespace stock_quote_alert.Src.Dto
+﻿namespace stock_quote_alert.Dto
 {
     public class EmailDto
     {

@@ -1,6 +1,6 @@
-﻿using stock_quote_alert.Src.Dto;
+﻿using stock_quote_alert.Dto;
 
-namespace stock_quote_alert.Src.Helpers
+namespace stock_quote_alert.Helpers
 {
     //# Como essa classe existe somente para liberar um Util ou Helper estatico ela não precisa ser salva no escopo "builder.Services"
     //# E não se caracteriza como um service e sim um utilitario por isso está separado na pasta de Helpers
@@ -9,9 +9,8 @@ namespace stock_quote_alert.Src.Helpers
 
         public static EmailDto FormatEmail(decimal stockQuoteValue, bool thresholdUp, decimal threshold, string stockName)
         {
-
-            var action = "";
-            var headerAction = "";
+            string headerAction;
+            string action;
 
             if (thresholdUp)
             {
@@ -44,9 +43,7 @@ namespace stock_quote_alert.Src.Helpers
             {
                 Subject = subject,
                 Body = emailHtml
-            }; ;
-
+            };
         }
-
     }
 }
